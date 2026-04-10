@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -27,6 +28,27 @@ import (
 	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
 	saas "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"
 )
+
+// swappableHandler is a thread-safe http.Handler that allows replacing the
+// underlying handler at runtime (e.g., swapping from an early health-only
+// handler to the full application router once initialization is complete).
+type swappableHandler struct {
+	mu      sync.RWMutex
+	handler http.Handler
+}
+
+func (s *swappableHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	s.mu.RLock()
+	h := s.handler
+	s.mu.RUnlock()
+	h.ServeHTTP(w, r)
+}
+
+func (s *swappableHandler) swap(h http.Handler) {
+	s.mu.Lock()
+	s.handler = h
+	s.mu.Unlock()
+}
 
 var Command = &cli.Command{
 	Name:  "serve",
@@ -81,6 +103,29 @@ var Command = &cli.Command{
 			addr = ":" + addr
 		}
 		dsn := cmd.String("database-url")
+
+		// Start an early HTTP server so Railway's health check passes during
+		// initialization. The handler is swapped to the full router once ready.
+		dispatch := &swappableHandler{
+			handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				if r.URL.Path == "/health" {
+					w.WriteHeader(http.StatusOK)
+					return
+				}
+				http.Error(w, "service initializing", http.StatusServiceUnavailable)
+			}),
+		}
+
+		srv, err := httpext.New(dispatch, httpext.WithAddr(addr))
+		if err != nil {
+			return err
+		}
+
+		srvErrCh := make(chan error, 1)
+		go func() {
+			log.Info("starting server", "addr", addr)
+			srvErrCh <- srv.Run(ctx)
+		}()
 
 		// Run database migrations
 		if n, err := migrations.RunWithDSN(dsn); err != nil {
@@ -159,7 +204,7 @@ var Command = &cli.Command{
 
 		apiState := api.NewAppState(rqueueClient, apiStore)
 
-		// Setup router
+		// Setup full application router
 		mainRouter := chi.NewRouter()
 		mainRouter.Use(middleware.Recoverer)
 
@@ -181,13 +226,10 @@ var Command = &cli.Command{
 			httpSwagger.URL("/swagger/doc.json"),
 		))
 
-		srv, err := httpext.New(mainRouter, httpext.WithAddr(addr))
-		if err != nil {
-			return err
-		}
+		// Swap early handler for full application router
+		dispatch.swap(mainRouter)
+		log.Info("server ready")
 
-		log.Info("starting server", "addr", addr)
-
-		return srv.Run(ctx)
+		return <-srvErrCh
 	},
 }
