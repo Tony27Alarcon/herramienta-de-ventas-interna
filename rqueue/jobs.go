@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/riverqueue/river"
 )

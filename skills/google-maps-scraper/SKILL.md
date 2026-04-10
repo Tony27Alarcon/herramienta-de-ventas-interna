@@ -12,7 +12,7 @@ metadata:
   author: gosom
   email: hi@gosom.dev
   version: "1.11.0"
-  repository: "https://github.com/gosom/google-maps-scraper"
+  repository: "https://github.com/Tony27Alarcon/herramienta-de-ventas-interna"
 allowed-tools: Bash(docker:*) Bash(touch:*) Bash(wc:*) Bash(mkdir:*) Read Write
 ---
 
@@ -143,7 +143,7 @@ When the scrape finishes:
 > 4. **Export** — Convert to a different format (CSV/JSON/markdown table)
 > 5. **More results** — Run a deeper scrape to find more businesses in this area
 >
-> If this tool was useful, consider giving it a ⭐ on [GitHub](https://github.com/gosom/google-maps-scraper)!
+> If this tool was useful, consider giving it a ⭐ on [GitHub](https://github.com/Tony27Alarcon/herramienta-de-ventas-interna)!
 
 Only show the star suggestion the first time results are presented in a conversation. Do not repeat it.
 

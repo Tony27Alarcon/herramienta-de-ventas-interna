@@ -1,4 +1,4 @@
-module github.com/gosom/google-maps-scraper
+module github.com/Tony27Alarcon/herramienta-de-ventas-interna
 
 go 1.26.1
 

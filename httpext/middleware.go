@@ -9,7 +9,7 @@ import (
 
 	"github.com/go-chi/chi/v5/middleware"
 
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 )
 
 type contextKey string

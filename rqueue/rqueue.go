@@ -10,9 +10,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gosom/google-maps-scraper/exiter"
-	"github.com/gosom/google-maps-scraper/gmaps"
-	"github.com/gosom/google-maps-scraper/scraper"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/exiter"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/gmaps"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/scraper"
 	"github.com/gosom/scrapemate"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -21,7 +21,7 @@ import (
 	"github.com/riverqueue/river/rivertype"
 	"github.com/speps/go-hashids/v2"
 
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 )
 
 var hashIDCodec *hashids.HashID

@@ -11,10 +11,10 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"github.com/gosom/google-maps-scraper/deduper"
-	"github.com/gosom/google-maps-scraper/exiter"
-	"github.com/gosom/google-maps-scraper/gmaps"
-	"github.com/gosom/google-maps-scraper/grid"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/deduper"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/exiter"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/gmaps"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/grid"
 	"github.com/gosom/scrapemate"
 )
 

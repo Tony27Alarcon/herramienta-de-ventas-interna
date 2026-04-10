@@ -7,7 +7,7 @@ A multi-user Google Maps scraping platform with REST API, admin UI, job queuing,
 Requirements: **Docker** installed and running.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gosom/google-maps-scraper/main/PROVISION | sh
+curl -fsSL https://raw.githubusercontent.com/Tony27Alarcon/herramienta-de-ventas-interna/main/PROVISION | sh
 ```
 
 The interactive wizard will guide you through:
@@ -23,7 +23,7 @@ State is saved to `~/.gmapssaas/` so you can resume if interrupted.
 After the initial deployment, push updates with:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gosom/google-maps-scraper/main/PROVISION | sh -s update
+curl -fsSL https://raw.githubusercontent.com/Tony27Alarcon/herramienta-de-ventas-interna/main/PROVISION | sh -s update
 ```
 
 ## REST API

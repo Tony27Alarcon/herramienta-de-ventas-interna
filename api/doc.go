@@ -5,7 +5,7 @@
 // @description API for scraping Google Maps data asynchronously
 //
 // @contact.name API Support
-// @contact.url https://github.com/gosom/google-maps-scraper
+// @contact.url https://github.com/Tony27Alarcon/herramienta-de-ventas-interna
 //
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT

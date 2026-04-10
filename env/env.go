@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 )
 
 func IsEnvSet(name string) bool {

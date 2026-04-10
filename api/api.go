@@ -11,9 +11,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
-	"github.com/gosom/google-maps-scraper/httpext"
-	"github.com/gosom/google-maps-scraper/log"
-	"github.com/gosom/google-maps-scraper/rqueue"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/httpext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
 )
 
 // IStore defines the interface for API storage operations.

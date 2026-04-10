@@ -14,11 +14,11 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/log"
-	"github.com/gosom/google-maps-scraper/postgres"
-	"github.com/gosom/google-maps-scraper/rqueue"
-	saas "github.com/gosom/google-maps-scraper/saas"
-	"github.com/gosom/google-maps-scraper/scraper"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/postgres"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
+	saas "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/scraper"
 )
 
 // workerStats tracks runtime statistics for the health endpoint.
@@ -38,10 +38,10 @@ var Command = &cli.Command{
 	Usage: "Start the scraper worker",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
-			Name:    "database-url",
-			Usage:   "PostgreSQL connection string",
-			Value:   "postgres://postgres:postgres@localhost:5432/gmaps_pro?sslmode=disable",
-			Sources: cli.EnvVars(saas.EnvDatabaseURL),
+			Name:     "database-url",
+			Usage:    "PostgreSQL connection string (e.g. postgresql://...@db.[ref].supabase.co:5432/postgres?sslmode=require)",
+			Sources:  cli.EnvVars(saas.EnvDatabaseURL),
+			Required: true,
 		},
 		&cli.IntFlag{
 			Name:    "concurrency",
@@ -192,6 +192,11 @@ func parseProxies(val string) []string {
 }
 
 func runHealthServer(ctx context.Context, manager *scraper.ScraperManager) {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", func(w http.ResponseWriter, _ *http.Request) {
 		uptime := time.Since(workerStats.startedAt).Truncate(time.Second)
@@ -229,7 +234,7 @@ func runHealthServer(ctx context.Context, manager *scraper.ScraperManager) {
 	})
 
 	server := &http.Server{
-		Addr:              ":8080",
+		Addr:              ":" + port,
 		Handler:           mux,
 		ReadHeaderTimeout: 30 * time.Second,
 	}
@@ -244,7 +249,7 @@ func runHealthServer(ctx context.Context, manager *scraper.ScraperManager) {
 		_ = server.Shutdown(shutdownCtx)
 	}()
 
-	log.Info("starting health server on :8080")
+	log.Info("starting health server", "port", port)
 
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Error("health server error", "error", err)

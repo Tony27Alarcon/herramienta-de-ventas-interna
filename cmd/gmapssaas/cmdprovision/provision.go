@@ -12,17 +12,17 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/admin"
-	adminpg "github.com/gosom/google-maps-scraper/admin/postgres"
-	gocli "github.com/gosom/google-maps-scraper/cli"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdcommon"
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/infra/digitalocean"
-	"github.com/gosom/google-maps-scraper/infra/hetzner"
-	"github.com/gosom/google-maps-scraper/infra/vps"
-	"github.com/gosom/google-maps-scraper/migrations"
-	"github.com/gosom/google-maps-scraper/postgres"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin"
+	adminpg "github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin/postgres"
+	gocli "github.com/Tony27Alarcon/herramienta-de-ventas-interna/cli"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdcommon"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/digitalocean"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/hetzner"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/vps"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/migrations"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/postgres"
 )
 
 type providerResult struct {

@@ -12,8 +12,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/gosom/scrapemate"
 
-	"github.com/gosom/google-maps-scraper/deduper"
-	"github.com/gosom/google-maps-scraper/exiter"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/deduper"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/exiter"
 )
 
 type GmapJobOptions func(*GmapJob)

@@ -6,12 +6,12 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/admin"
-	adminpg "github.com/gosom/google-maps-scraper/admin/postgres"
-	gocli "github.com/gosom/google-maps-scraper/cli"
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/env"
-	saas "github.com/gosom/google-maps-scraper/saas"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin"
+	adminpg "github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin/postgres"
+	gocli "github.com/Tony27Alarcon/herramienta-de-ventas-interna/cli"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/env"
+	saas "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"
 )
 
 var Command = &cli.Command{

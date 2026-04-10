@@ -3,7 +3,7 @@
 ## Context
 `maps-scraper-pro` is a SaaS layer built on top of `google-maps-scraper`. It adds a REST API,
 admin dashboard, River job queue, cloud provisioning, and multi-user auth. Both repos are open
-source and being merged into a single module (`github.com/gosom/google-maps-scraper`) with one
+source and being merged into a single module (`github.com/Tony27Alarcon/herramienta-de-ventas-interna`) with one
 `go.mod`. SaaS packages are merged INTO existing packages where they overlap, and added as new
 top-level packages where they don't.
 
@@ -65,7 +65,7 @@ The existing `go.work` only contains `use .` and is no longer needed.
 
 ```bash
 PRO=/home/giorgos/Development/github.com/gosom/maps-scraper-pro
-DST=/home/giorgos/Development/github.com/gosom/google-maps-scraper
+DST=/home/giorgos/Development/github.com/Tony27Alarcon/herramienta-de-ventas-interna
 
 # Merge SaaS postgres into existing postgres/ (add as a new file, same package)
 cp $PRO/postgres/postgres.go $DST/postgres/pool.go
@@ -107,40 +107,40 @@ Run across all newly added directories. **Apply longest paths first** to avoid p
 ```bash
 find admin api cli cryptoext env httpext infra log migrations ratelimit rqueue scraper saas cmd/gmapssaas postgres/pool.go -name "*.go" | \
 xargs sed -i \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdadmin|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdadmin|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdcommon|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdcommon|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdprovision|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdprovision|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdserve|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdserve|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdupdate|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdupdate|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdworker|github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdworker|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/admin/postgres|github.com/gosom/google-maps-scraper/admin/postgres|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/api/docs|github.com/gosom/google-maps-scraper/api/docs|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/api/postgres|github.com/gosom/google-maps-scraper/api/postgres|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra/cloudinit|github.com/gosom/google-maps-scraper/infra/cloudinit|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra/digitalocean|github.com/gosom/google-maps-scraper/infra/digitalocean|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra/hetzner|github.com/gosom/google-maps-scraper/infra/hetzner|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra/planetscale|github.com/gosom/google-maps-scraper/infra/planetscale|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra/vps|github.com/gosom/google-maps-scraper/infra/vps|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/ratelimit/postgres|github.com/gosom/google-maps-scraper/ratelimit/postgres|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/admin|github.com/gosom/google-maps-scraper/admin|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/api|github.com/gosom/google-maps-scraper/api|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cli|github.com/gosom/google-maps-scraper/cli|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/cryptoext|github.com/gosom/google-maps-scraper/cryptoext|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/env|github.com/gosom/google-maps-scraper/env|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/httpext|github.com/gosom/google-maps-scraper/httpext|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/infra|github.com/gosom/google-maps-scraper/infra|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/log|github.com/gosom/google-maps-scraper/log|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/migrations|github.com/gosom/google-maps-scraper/migrations|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/postgres|github.com/gosom/google-maps-scraper/postgres|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/ratelimit|github.com/gosom/google-maps-scraper/ratelimit|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/rqueue|github.com/gosom/google-maps-scraper/rqueue|g' \
-  -e 's|github.com/gosom/maps-scraper-pro/scraper|github.com/gosom/google-maps-scraper/scraper|g' \
-  -e 's|"github.com/gosom/maps-scraper-pro"|"github.com/gosom/google-maps-scraper/saas"|g'
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdadmin|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdadmin|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdcommon|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdcommon|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdprovision|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdprovision|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdserve|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdserve|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdupdate|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdupdate|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cmd/gmapspro/cmdworker|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdworker|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/admin/postgres|github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin/postgres|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/api/docs|github.com/Tony27Alarcon/herramienta-de-ventas-interna/api/docs|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/api/postgres|github.com/Tony27Alarcon/herramienta-de-ventas-interna/api/postgres|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra/cloudinit|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/cloudinit|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra/digitalocean|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/digitalocean|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra/hetzner|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/hetzner|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra/planetscale|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/planetscale|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra/vps|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/vps|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/ratelimit/postgres|github.com/Tony27Alarcon/herramienta-de-ventas-interna/ratelimit/postgres|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/admin|github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/api|github.com/Tony27Alarcon/herramienta-de-ventas-interna/api|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cli|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cli|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/cryptoext|github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/env|github.com/Tony27Alarcon/herramienta-de-ventas-interna/env|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/httpext|github.com/Tony27Alarcon/herramienta-de-ventas-interna/httpext|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/infra|github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/log|github.com/Tony27Alarcon/herramienta-de-ventas-interna/log|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/migrations|github.com/Tony27Alarcon/herramienta-de-ventas-interna/migrations|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/postgres|github.com/Tony27Alarcon/herramienta-de-ventas-interna/postgres|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/ratelimit|github.com/Tony27Alarcon/herramienta-de-ventas-interna/ratelimit|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/rqueue|github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue|g' \
+  -e 's|github.com/gosom/maps-scraper-pro/scraper|github.com/Tony27Alarcon/herramienta-de-ventas-interna/scraper|g' \
+  -e 's|"github.com/gosom/maps-scraper-pro"|"github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"|g'
 ```
 
 Also update the import alias used in `cmd/gmapssaas/cmdserve/cmd_serve.go` (was `gmapspro`, now refers to `saas` package):
 ```bash
-sed -i 's|gmapspro "github.com/gosom/google-maps-scraper/saas"|saas "github.com/gosom/google-maps-scraper/saas"|g' \
+sed -i 's|gmapspro "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"|saas "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"|g' \
   cmd/gmapssaas/cmdserve/cmd_serve.go
 ```
 
@@ -150,7 +150,7 @@ find cmd/gmapssaas -name "*.go" | xargs sed -i 's|gmapspro\.|saas.|g'
 ```
 
 > **Notes:**
-> - `rqueue/rqueue.go` already imports `github.com/gosom/google-maps-scraper/gmaps` and `.../exiter` — those stay unchanged.
+> - `rqueue/rqueue.go` already imports `github.com/Tony27Alarcon/herramienta-de-ventas-interna/gmaps` and `.../exiter` — those stay unchanged.
 > - `postgres/pool.go` already has `package postgres` — no package declaration change needed.
 > - `saas/constants.go` package declaration is changed from `package mapspro` to `package saas` in step 4.
 
@@ -159,7 +159,7 @@ find cmd/gmapssaas -name "*.go" | xargs sed -i 's|gmapspro\.|saas.|g'
 `api/doc.go` line 8 contains `@contact.url https://github.com/gosom/maps-scraper-pro` — this is a
 URL (not a Go import), so the sed in step 5 won't catch it. Fix manually:
 ```bash
-sed -i 's|https://github.com/gosom/maps-scraper-pro|https://github.com/gosom/google-maps-scraper|g' api/doc.go
+sed -i 's|https://github.com/gosom/maps-scraper-pro|https://github.com/Tony27Alarcon/herramienta-de-ventas-interna|g' api/doc.go
 ```
 
 Then regenerate swagger docs (requires `swag` CLI):
@@ -206,7 +206,7 @@ Bump conflicting packages to the higher version:
 - `golang.org/x/tools`: v0.34.0 → v0.41.0
 - `google.golang.org/protobuf`: v1.36.6 → v1.36.8
 
-Remove `github.com/gosom/google-maps-scraper` from require (SaaS layer used it as external dep; now it's local).
+Remove `github.com/Tony27Alarcon/herramienta-de-ventas-interna` from require (SaaS layer used it as external dep; now it's local).
 
 Then run: `go mod tidy`
 

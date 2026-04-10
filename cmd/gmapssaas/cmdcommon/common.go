@@ -7,8 +7,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/infra/vps"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/vps"
 )
 
 var ErrDockerLoginFailed = errors.New("docker login failed")

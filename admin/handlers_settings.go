@@ -3,8 +3,8 @@ package admin
 import (
 	"net/http"
 
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 )
 
 // SettingsPageHandler renders the settings page.

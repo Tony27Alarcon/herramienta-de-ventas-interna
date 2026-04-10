@@ -10,7 +10,7 @@ import (
 	"github.com/gosom/scrapemate"
 	"github.com/mcnijman/go-emailaddress"
 
-	"github.com/gosom/google-maps-scraper/exiter"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/exiter"
 )
 
 type EmailExtractJobOptions func(*EmailExtractJob)

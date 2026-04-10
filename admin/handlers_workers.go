@@ -10,10 +10,10 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/log"
-	"github.com/gosom/google-maps-scraper/rqueue"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
 )
 
 var validWorkerName = regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]$`)

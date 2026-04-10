@@ -1,14 +1,14 @@
 # Google Maps Scraper
 
 <p align="center">
-  <a href="https://github.com/gosom/google-maps-scraper/stargazers"><img src="https://img.shields.io/github/stars/gosom/google-maps-scraper?style=social" alt="GitHub Stars"></a>
-  <a href="https://github.com/gosom/google-maps-scraper/network/members"><img src="https://img.shields.io/github/forks/gosom/google-maps-scraper?style=social" alt="GitHub Forks"></a>
+  <a href="https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/stargazers"><img src="https://img.shields.io/github/stars/Tony27Alarcon/herramienta-de-ventas-interna?style=social" alt="GitHub Stars"></a>
+  <a href="https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/network/members"><img src="https://img.shields.io/github/forks/Tony27Alarcon/herramienta-de-ventas-interna?style=social" alt="GitHub Forks"></a>
   <a href="https://twitter.com/intent/tweet?text=Powerful%20open-source%20Google%20Maps%20scraper%20-%20extract%20business%20data%20at%20scale%20with%20CLI%2C%20Web%20UI%2C%20or%20REST%20API&url=https%3A%2F%2Fgithub.com%2Fgosom%2Fgoogle-maps-scraper&hashtags=golang,webscraping,googlemaps,opensource"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet"></a>
 </p>
 
-[![Build Status](https://github.com/gosom/google-maps-scraper/actions/workflows/build.yml/badge.svg)](https://github.com/gosom/google-maps-scraper/actions/workflows/build.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/gosom/google-maps-scraper)](https://goreportcard.com/report/github.com/gosom/google-maps-scraper)
-[![GoDoc](https://godoc.org/github.com/gosom/google-maps-scraper?status.svg)](https://godoc.org/github.com/gosom/google-maps-scraper)
+[![Build Status](https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/actions/workflows/build.yml/badge.svg)](https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/actions/workflows/build.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Tony27Alarcon/herramienta-de-ventas-interna)](https://goreportcard.com/report/github.com/Tony27Alarcon/herramienta-de-ventas-interna)
+[![GoDoc](https://godoc.org/github.com/Tony27Alarcon/herramienta-de-ventas-interna?status.svg)](https://godoc.org/github.com/Tony27Alarcon/herramienta-de-ventas-interna)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Chat-7289DA?logo=discord&logoColor=white)](https://discord.gg/fpaAVhNCCu)
 
@@ -17,7 +17,7 @@
 > **SaaS Edition Available (BETA):** Deploy as a multi-user platform with REST API, admin dashboard,
 > job queue, and cloud provisioning. Try it now — just Docker required:
 > ```bash
-> curl -fsSL https://raw.githubusercontent.com/gosom/google-maps-scraper/main/PROVISION | sh
+> curl -fsSL https://raw.githubusercontent.com/Tony27Alarcon/herramienta-de-ventas-interna/main/PROVISION | sh
 > ```
 > [Read the SaaS documentation](docs/saas.md)
 >
@@ -164,12 +164,12 @@ The scraper has [built-in LeadsDB integration](#export-to-leadsdb) - just add yo
 Start the web interface with a single command:
 
 ```bash
-mkdir -p gmapsdata && docker run -v $PWD/gmapsdata:/gmapsdata -p 8080:8080 gosom/google-maps-scraper -data-folder /gmapsdata
+mkdir -p gmapsdata && docker run -v $PWD/gmapsdata:/gmapsdata -p 8080:8080 Tony27Alarcon/herramienta-de-ventas-interna -data-folder /gmapsdata
 ```
 
 Then open http://localhost:8080 in your browser.
 
-Or download the [binary release](https://github.com/gosom/google-maps-scraper/releases) for your platform.
+Or download the [binary release](https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/releases) for your platform.
 
 > **Note:** Results take at least 3 minutes to appear (minimum configured runtime).
 > 
@@ -181,14 +181,14 @@ Or download the [binary release](https://github.com/gosom/google-maps-scraper/re
 touch results.csv && docker run \
   -v $PWD/example-queries.txt:/example-queries \
   -v $PWD/results.csv:/results.csv \
-  gosom/google-maps-scraper \
+  Tony27Alarcon/herramienta-de-ventas-interna \
   -depth 1 \
   -input /example-queries \
   -results /results.csv \
   -exit-on-inactivity 3m
 ```
 
-> **Tip:** Use `gosom/google-maps-scraper:latest-rod` for the Rod version with faster container startup.
+> **Tip:** Use `Tony27Alarcon/herramienta-de-ventas-interna:latest-rod` for the Rod version with faster container startup.
 
 **Want emails?** Add the `-email` flag.
 
@@ -199,7 +199,7 @@ touch results.csv && docker run \
 ```bash
 docker run \
   -v $PWD/example-queries.txt:/example-queries \
-  gosom/google-maps-scraper \
+  Tony27Alarcon/herramienta-de-ventas-interna \
   -depth 1 \
   -input /example-queries \
   -leadsdb-api-key "your-api-key" \
@@ -229,7 +229,7 @@ Use Google Maps Scraper directly from AI coding agents like [Claude Code](https:
 **Install the skill:**
 
 ```bash
-npx skills add gosom/google-maps-scraper
+npx skills add Tony27Alarcon/herramienta-de-ventas-interna
 ```
 
 **Then just ask your agent:**
@@ -255,10 +255,10 @@ Two Docker image variants are available:
 
 ```bash
 # Playwright version (default)
-docker pull gosom/google-maps-scraper
+docker pull Tony27Alarcon/herramienta-de-ventas-interna
 
 # Rod version (alternative)
-docker pull gosom/google-maps-scraper:latest-rod
+docker pull Tony27Alarcon/herramienta-de-ventas-interna:latest-rod
 ```
 
 ### Build from Source
@@ -266,7 +266,7 @@ docker pull gosom/google-maps-scraper:latest-rod
 Requirements: Go 1.25.6+
 
 ```bash
-git clone https://github.com/gosom/google-maps-scraper.git
+git clone https://github.com/Tony27Alarcon/herramienta-de-ventas-interna.git
 cd google-maps-scraper
 go mod download
 
@@ -493,7 +493,7 @@ Skip the CSV files and send leads directly to a managed database. [LeadsDB](http
 ```bash
 docker run \
   -v $PWD/example-queries.txt:/example-queries \
-  gosom/google-maps-scraper \
+  Tony27Alarcon/herramienta-de-ventas-interna \
   -depth 1 \
   -input /example-queries \
   -leadsdb-api-key "your-api-key" \
@@ -587,7 +587,7 @@ spec:
     spec:
       containers:
       - name: google-maps-scraper
-        image: gosom/google-maps-scraper:latest
+        image: Tony27Alarcon/herramienta-de-ventas-interna:latest
         args: ["-c", "1", "-depth", "10", "-dsn", "postgres://user:pass@host:5432/db"]
         resources:
           requests:
@@ -644,7 +644,7 @@ This project is **free and open source**, maintained in my spare time. If it's u
 
 | Action | Impact |
 |--------|--------|
-| **[Star this repo](https://github.com/gosom/google-maps-scraper)** | Helps others discover the project |
+| **[Star this repo](https://github.com/Tony27Alarcon/herramienta-de-ventas-interna)** | Helps others discover the project |
 | **[Sponsor on GitHub](https://github.com/sponsors/gosom)** | Directly funds development time |
 | **Share your success** | Tweet or blog about how you use it |
 | **Report bugs & contribute** | Help improve the codebase |
@@ -820,11 +820,11 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Star History
 
-<a href="https://star-history.com/#gosom/google-maps-scraper&Date">
+<a href="https://star-history.com/#Tony27Alarcon/herramienta-de-ventas-interna&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=gosom/google-maps-scraper&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=gosom/google-maps-scraper&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=gosom/google-maps-scraper&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Tony27Alarcon/herramienta-de-ventas-interna&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Tony27Alarcon/herramienta-de-ventas-interna&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Tony27Alarcon/herramienta-de-ventas-interna&type=Date" />
  </picture>
 </a>
 
@@ -847,11 +847,11 @@ Need a custom scraper tailored to your specific requirements? **[Book a consulti
 </p>
 
 <p align="center">
-  <a href="https://github.com/gosom/google-maps-scraper/stargazers">
-    <img src="https://img.shields.io/github/stars/gosom/google-maps-scraper?style=social" alt="Star on GitHub">
+  <a href="https://github.com/Tony27Alarcon/herramienta-de-ventas-interna/stargazers">
+    <img src="https://img.shields.io/github/stars/Tony27Alarcon/herramienta-de-ventas-interna?style=social" alt="Star on GitHub">
   </a>
 </p>
 
 <p align="center">
-  <b>If this project saved you time, consider <a href="https://github.com/gosom/google-maps-scraper">starring it</a> or <a href="https://github.com/sponsors/gosom">sponsoring</a> its development!</b>
+  <b>If this project saved you time, consider <a href="https://github.com/Tony27Alarcon/herramienta-de-ventas-interna">starring it</a> or <a href="https://github.com/sponsors/gosom">sponsoring</a> its development!</b>
 </p>

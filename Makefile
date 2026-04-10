@@ -75,22 +75,27 @@ provision: ## run the provisioning wizard via Docker (state persisted to ~/.gmap
 	  -v "$(HOME)/.ssh:/root/.ssh:ro" \
 	  gmapssaas:$(VERSION) provision
 
-saas-dev: ## start SaaS development environment (postgres + migrations + admin user + hot reload)
-	@docker compose -f docker-compose.saas.yaml up -d postgres
-	@echo "Waiting for postgres..."
-	@until docker compose -f docker-compose.saas.yaml exec -T postgres pg_isready -U postgres > /dev/null 2>&1; do sleep 1; done
+saas-dev: ## start SaaS development environment (requires DATABASE_URL pointing to Supabase)
+	@if [ -z "$(DATABASE_URL)" ]; then \
+		echo "Error: DATABASE_URL no está definida. Apúntala a tu Supabase direct connection string."; \
+		exit 1; \
+	fi
 	@echo "Running migrations..."
 	@sql-migrate up -config=migrations/dbconfig.yml
-	@echo "Creating admin user..."
-	@go run ./cmd/gmapssaas admin create-user -u admin -p '1234#abcd'
+	@echo "Creating admin user (se ignora si ya existe)..."
+	@go run ./cmd/gmapssaas admin create-user -u admin -p '1234#abcd' 2>/dev/null || true
 	@echo "Starting server with hot reload on :8080..."
 	@air
 
-saas-dev-stop: ## stop SaaS development environment
-	@docker compose -f docker-compose.saas.yaml down
+saas-dev-stop: ## no-op: la base de datos está en Supabase, no hay nada local que detener
+	@echo "La base de datos está en Supabase — no hay servicios locales que detener."
 
-saas-dev-reset: ## reset SaaS development environment (drops all data)
-	@docker compose -f docker-compose.saas.yaml down -v
+saas-dev-reset: ## rollback y re-aplica todas las migraciones (DESTRUYE TODOS LOS DATOS)
+	@if [ -z "$(DATABASE_URL)" ]; then echo "Error: DATABASE_URL no está definida."; exit 1; fi
+	@echo "WARNING: esto destruirá todos los datos en tu base de datos de Supabase."
+	@read -p "¿Continuar? (escribe 'si'): " confirm && [ "$$confirm" = "si" ]
+	@sql-migrate down -config=migrations/dbconfig.yml -limit=100
+	@sql-migrate up -config=migrations/dbconfig.yml
 
 saas-run-server: ## run the SaaS API server locally
 	@go run ./cmd/gmapssaas serve
@@ -119,8 +124,9 @@ saas-gen: ## regenerate swagger docs for the SaaS API
 
 gen: saas-gen ## generate swagger docs
 
-saas-psql: ## connect to SaaS development database
-	PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres gmapssaas
+saas-psql: ## connect to Supabase database (requires DATABASE_URL)
+	@if [ -z "$(DATABASE_URL)" ]; then echo "Error: DATABASE_URL no está definida."; exit 1; fi
+	@psql "$(DATABASE_URL)"
 
 clean: ## clean build artifacts
 	@rm -rf bin/ tmp/

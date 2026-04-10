@@ -7,11 +7,11 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdcommon"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdprovision"
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/infra/digitalocean"
-	"github.com/gosom/google-maps-scraper/migrations"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdcommon"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdprovision"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/digitalocean"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/migrations"
 )
 
 type Deployer interface {

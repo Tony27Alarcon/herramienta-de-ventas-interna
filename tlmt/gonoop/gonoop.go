@@ -3,7 +3,7 @@ package gonoop
 import (
 	"context"
 
-	"github.com/gosom/google-maps-scraper/tlmt"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/tlmt"
 )
 
 type service struct {

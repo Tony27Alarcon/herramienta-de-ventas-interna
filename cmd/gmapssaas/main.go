@@ -7,16 +7,16 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdadmin"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdprovision"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdserve"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdupdate"
-	"github.com/gosom/google-maps-scraper/cmd/gmapssaas/cmdworker"
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdadmin"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdprovision"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdserve"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdupdate"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cmd/gmapssaas/cmdworker"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 
 	// Register infrastructure providers.
-	_ "github.com/gosom/google-maps-scraper/infra/digitalocean"
-	_ "github.com/gosom/google-maps-scraper/infra/hetzner"
+	_ "github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/digitalocean"
+	_ "github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/hetzner"
 )
 
 func main() {

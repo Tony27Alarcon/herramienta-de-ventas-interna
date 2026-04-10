@@ -12,10 +12,10 @@ import (
 	"github.com/riverqueue/river"
 	"golang.org/x/crypto/ssh"
 
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/infra/cloudinit"
-	"github.com/gosom/google-maps-scraper/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/cloudinit"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
 )
 
 // configKeys for app_config lookups (must match admin/constants.go).

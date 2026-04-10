@@ -6,8 +6,8 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/gosom/google-maps-scraper/ratelimit"
-	"github.com/gosom/google-maps-scraper/rqueue"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/ratelimit"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
 )
 
 type AppState struct {

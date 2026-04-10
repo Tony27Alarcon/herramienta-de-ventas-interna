@@ -11,8 +11,8 @@ import (
 
 	"golang.org/x/crypto/ssh"
 
-	"github.com/gosom/google-maps-scraper/infra"
-	"github.com/gosom/google-maps-scraper/infra/vps"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/infra/vps"
 )
 
 func TestCheckConnectivity_NoPrivateKey(t *testing.T) {

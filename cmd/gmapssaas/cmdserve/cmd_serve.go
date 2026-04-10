@@ -3,6 +3,7 @@ package cmdserve
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -10,19 +11,20 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger/v2"
 	"github.com/urfave/cli/v3"
 
-	"github.com/gosom/google-maps-scraper/admin"
-	adminpostgres "github.com/gosom/google-maps-scraper/admin/postgres"
-	"github.com/gosom/google-maps-scraper/api"
-	_ "github.com/gosom/google-maps-scraper/api/docs" // registers swagger docs
-	apipostgres "github.com/gosom/google-maps-scraper/api/postgres"
-	"github.com/gosom/google-maps-scraper/cryptoext"
-	"github.com/gosom/google-maps-scraper/env"
-	"github.com/gosom/google-maps-scraper/httpext"
-	"github.com/gosom/google-maps-scraper/log"
-	"github.com/gosom/google-maps-scraper/postgres"
-	ratelimitpostgres "github.com/gosom/google-maps-scraper/ratelimit/postgres"
-	"github.com/gosom/google-maps-scraper/rqueue"
-	saas "github.com/gosom/google-maps-scraper/saas"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin"
+	adminpostgres "github.com/Tony27Alarcon/herramienta-de-ventas-interna/admin/postgres"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/api"
+	_ "github.com/Tony27Alarcon/herramienta-de-ventas-interna/api/docs" // registers swagger docs
+	apipostgres "github.com/Tony27Alarcon/herramienta-de-ventas-interna/api/postgres"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/env"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/httpext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/log"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/migrations"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/postgres"
+	ratelimitpostgres "github.com/Tony27Alarcon/herramienta-de-ventas-interna/ratelimit/postgres"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/rqueue"
+	saas "github.com/Tony27Alarcon/herramienta-de-ventas-interna/saas"
 )
 
 var Command = &cli.Command{
@@ -36,10 +38,10 @@ var Command = &cli.Command{
 			Sources: cli.EnvVars(saas.EnvAddr),
 		},
 		&cli.StringFlag{
-			Name:    "database-url",
-			Usage:   "PostgreSQL connection string",
-			Value:   "postgres://postgres:postgres@localhost:5432/gmaps_pro?sslmode=disable",
-			Sources: cli.EnvVars(saas.EnvDatabaseURL),
+			Name:     "database-url",
+			Usage:    "PostgreSQL connection string (e.g. postgresql://...@db.[ref].supabase.co:5432/postgres?sslmode=require)",
+			Sources:  cli.EnvVars(saas.EnvDatabaseURL),
+			Required: true,
 		},
 		&cli.IntFlag{
 			Name:    "db-max-conns",
@@ -75,6 +77,13 @@ var Command = &cli.Command{
 	Action: func(ctx context.Context, cmd *cli.Command) error {
 		addr := cmd.String("addr")
 		dsn := cmd.String("database-url")
+
+		// Run database migrations
+		if n, err := migrations.RunWithDSN(dsn); err != nil {
+			return fmt.Errorf("failed to run migrations: %w", err)
+		} else if n > 0 {
+			log.Info("database migrations applied", "count", n)
+		}
 
 		// Connect to database
 		dbPool, err := postgres.Connect(ctx, dsn,
@@ -156,6 +165,11 @@ var Command = &cli.Command{
 		// Setup API routes (in a group so middleware can be added)
 		mainRouter.Group(func(r chi.Router) {
 			api.Routes(r, apiState)
+		})
+
+		// Health check
+		mainRouter.Get("/health", func(w http.ResponseWriter, _ *http.Request) {
+			w.WriteHeader(http.StatusOK)
 		})
 
 		// Swagger UI

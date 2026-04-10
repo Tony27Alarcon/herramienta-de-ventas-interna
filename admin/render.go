@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/gosom/google-maps-scraper/cryptoext"
+	"github.com/Tony27Alarcon/herramienta-de-ventas-interna/cryptoext"
 )
 
 // renderTemplate renders a template with the given data.

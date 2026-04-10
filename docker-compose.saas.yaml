@@ -1,19 +1,3 @@
-services:
-  postgres:
-    image: postgres:18-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: gmapssaas
-    ports:
-      - "5432:5432"
-    volumes:
-      - saas_pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  saas_pgdata:
+# La base de datos está alojada en Supabase.
+# Este archivo ya no levanta postgres localmente.
+# Configura DATABASE_URL en tu .env apuntando a Supabase.
