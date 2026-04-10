@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -35,7 +36,7 @@ var Command = &cli.Command{
 			Name:    "addr",
 			Usage:   "Server listen address",
 			Value:   ":8080",
-			Sources: cli.EnvVars(saas.EnvAddr),
+			Sources: cli.EnvVars("PORT", saas.EnvAddr),
 		},
 		&cli.StringFlag{
 			Name:     "database-url",
@@ -76,6 +77,9 @@ var Command = &cli.Command{
 	},
 	Action: func(ctx context.Context, cmd *cli.Command) error {
 		addr := cmd.String("addr")
+		if addr != "" && !strings.Contains(addr, ":") {
+			addr = ":" + addr
+		}
 		dsn := cmd.String("database-url")
 
 		// Run database migrations
